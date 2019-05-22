@@ -69,7 +69,7 @@ abstract class modContactsSingleHelper
     // FIlter selected items and add routing
     $items =  array();
     foreach ($all as $single) {
-      // if ( !in_array($single->id, $ids) ) continue;
+      if ( !in_array($single->id, $ids) ) continue;
 
       // Add routing
       $single->slug = $single->id . ':' . $single->alias;
