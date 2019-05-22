@@ -5,6 +5,23 @@
     <element>mod_contacts_single</element>
     <type>module</type>
     <client>site</client>
+    <version>0.9.1</version>
+    <infourl title="Release Notes">https://github.com/produktivbuero/joomla-mod_contacts_single/releases/tag/v0.9.1</infourl>
+    <downloads>
+      <downloadurl type="full" format="zip">https://github.com/produktivbuero/joomla-mod_contacts_single/releases/download/v0.9.1/mod_contacts_single-v0.9.1.zip</downloadurl>
+    </downloads>
+    <tags>
+      <tag>rc</tag>
+    </tags>
+    <maintainer>Sebastian Brümmer</maintainer>
+    <maintainerurl>https://www.produktivbuero.de</maintainerurl>
+    <targetplatform name="joomla" version="3.*"/>
+  </update>
+  <update>
+    <name>Contacts - Single</name>
+    <element>mod_contacts_single</element>
+    <type>module</type>
+    <client>site</client>
     <version>0.9.0</version>
     <infourl title="Release Notes">https://github.com/produktivbuero/joomla-mod_contacts_single/releases/tag/v0.9.0</infourl>
     <downloads>
