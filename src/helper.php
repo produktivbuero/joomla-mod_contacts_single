@@ -41,7 +41,7 @@ abstract class modContactsSingleHelper
     if ( empty($ids) ) return array();
     
     // Get an instance of the generic articles model
-    $contacts = JModelLegacy::getInstance('Contact', 'ContactModel', array('ignore_request' => true));
+    $contacts = JModelLegacy::getInstance('Category', 'ContactModel', array('ignore_request' => true));
 
     // Set application parameters in model
     $app       = JFactory::getApplication();
@@ -64,23 +64,25 @@ abstract class modContactsSingleHelper
     $direction = $ordering == 'rand()' ? '' : $params->get('direction', 'ASC');
     $contacts->setState('list.direction', $direction);
 
-    // Get items
+    $all = $contacts->getItems();
+
+    // FIlter selected items and add routing
     $items =  array();
-    foreach ($ids as $id) {
-      $item = $contacts->getItem( $id );
+    foreach ($all as $single) {
+      // if ( !in_array($single->id, $ids) ) continue;
 
       // Add routing
-      $item->slug = $item->id . ':' . $item->alias;
+      $single->slug = $single->id . ':' . $single->alias;
       
       // Find menu itemid
-      $value = ContactHelperRoute::getCategoryRoute($item->catid);
+      $value = ContactHelperRoute::getCategoryRoute($single->catid);
       $menuItem = $app->getMenu()->getItems( 'link', $value, true );
       $itemId = empty($menuItem) ? 0 : $menuItem->id;
 
       // We know that we have access (see "Access filter")
-      $item->link = JRoute::_( ContactHelperRoute::getContactRoute($item->slug, $item->catid).'&Itemid='.$itemId );
+      $single->link = JRoute::_( ContactHelperRoute::getContactRoute($single->slug, $single->catid).'&Itemid='.$itemId );
 
-      $items[] = $item;
+      $items[] = $single;
     }
 
     return $items;
